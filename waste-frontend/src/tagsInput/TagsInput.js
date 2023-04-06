@@ -1,4 +1,5 @@
-import { useState } from "react";
+import TagSelect from './tagSelect/TagSelect';
+
 
 const TagsInput = (props) => {
 
@@ -8,9 +9,11 @@ const TagsInput = (props) => {
             <input
                 type="text"
                 onChange={(e) => {
-                    props.onInput(e.target.value.split(" "));
+                    props.onTags(e.target.value.split(" "));
                 }}
             />
+            <TagSelect onSelect={(tag) => props.onSingleTag(tag)}/>
+
         </div>
     )
 }

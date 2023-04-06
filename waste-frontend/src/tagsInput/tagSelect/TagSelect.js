@@ -2,8 +2,7 @@ import { useState } from "react";
 
 const TagsInput = ({onSelect}) => {
 
-    const [tags, setTags] = useState(["hej", "hopp"]);
-
+    let tags = ["hej", "hopp"]
     return (
         <div>
             {

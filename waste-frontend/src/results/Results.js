@@ -6,8 +6,15 @@ const Results = ({ewcGuesses}) => {
         <div>
             <ul>
                 {
-                    ewcGuesses.map(guess => 
-                        <ul>{guess}</ul>
+                    ewcGuesses.map((guess, index) => 
+                        <div key={index}>
+                            <h3>{guess["percentage"]}%</h3>
+                            <ul key={index}>
+                                {guess["description"]} 
+                            </ul>
+                            <br/>
+                        </div>
+                        
                     )
                 }
             </ul>
