@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const WordsInput = (props) => {
+const TagsInput = (props) => {
 
     return (
         <div>
@@ -15,4 +15,4 @@ const WordsInput = (props) => {
     )
 }
 
-export default WordsInput;
+export default TagsInput;

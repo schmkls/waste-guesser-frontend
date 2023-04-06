@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-const TagsInput = () => {
+const TagsInput = ({onSelect}) => {
 
-    const [selectedTags, setSelectedTags] = useState([]);
     const [tags, setTags] = useState(["hej", "hopp"]);
 
     return (
@@ -12,7 +11,7 @@ const TagsInput = () => {
                     <button
                         key={index}
                         onClick={() => {
-                            setSelectedTags([...selectedTags, tag]);
+                            onSelect(tag);
                         }}
                     >
                         {tag}
