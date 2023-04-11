@@ -8,7 +8,7 @@ const Results = ({ewcGuesses}) => {
                 {
                     ewcGuesses.map((guess, index) => 
                         <div key={index}>
-                            <p>{guess["percentage"]}%</p>
+                            <p>{Math.round(guess["percentage"] * 100, 2)}%</p>
                             <ul key={index}>
                                 {guess["description"]} 
                             </ul>
