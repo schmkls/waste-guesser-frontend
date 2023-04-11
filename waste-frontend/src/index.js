@@ -15,6 +15,7 @@ export default function App() {
     const [tags, setTags] = useState([]);     //used to fetch results
     const [ewcGuesses, setEwcGuesses] = useState([]);   //results
     const [isLoading, setIsLoading] = useState(false);
+    const [info, setInfo] = useState("")
 
     //upload image and get id
     useEffect(() => {
@@ -71,8 +72,26 @@ export default function App() {
 
 
     useEffect(() => {
+        if (!imageId) {
+            return;
+        }
         setIsLoading(true);
-        let url = `${BASE_URL}/barcode-guess/?image_id=4`
+        let url = `${BASE_URL}/barcode-guess/?image_id=${imageId}`
+        fetch(url)
+            .then((ewcs) => {
+                if (ewcs.status === 400) {
+                    setInfo("Barcode could not be read")
+                    setIsLoading(false);
+                    return;
+                }
+                ewcs.json()
+                    .then((json) => {
+                        console.log('barcode guess json: ', json);
+                    })
+        }, (error) => {
+            console.log('error: ', error);
+            setIsLoading(false);
+        })
     }, [imageId])
 
 
@@ -82,7 +101,9 @@ export default function App() {
             <UploadAndDisplayImage onUpload={(img) => setImage(img)} />
             <TagsInput
                 onTags={(words) => setTags(words)}
-                onSingleTag={(tag) => setTags([...tags, tag])} />
+                onSingleTag={(tag) => setTags([...tags, tag])} 
+            />
+            <p>{info}</p>
             {
                 isLoading ? <p>Loading...</p> : null
             }
