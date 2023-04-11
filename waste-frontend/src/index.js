@@ -4,7 +4,7 @@ import './index.css';
 import UploadAndDisplayImage from './uploadAndDisplayImage/UploadAndDisplayImage';
 import TagsInput from './tagsInput/TagsInput';
 import Results from './results/Results';
-
+import ChosenTagsField from './chosenTagsField/ChosenTagsField';
 
 const BASE_URL = 'http://127.0.0.1:8000/waste'
 
@@ -31,13 +31,13 @@ export default function App() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            setImageId(data['id'])
-        })
-        .catch(error => {
-            console.error('Failed to upload image:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                setImageId(data['id'])
+            })
+            .catch(error => {
+                console.error('Failed to upload image:', error);
+            });
     }, [image])
 
     //get ewcs from tags and image id
@@ -85,28 +85,42 @@ export default function App() {
                     return;
                 }
                 ewcs.json()
-                    .then((json) => {
-                        console.log('barcode guess json: ', json);
+                    .then((data) => {
+                        let guesses = []
+                        for (let key in data) {
+                            guesses.push({
+                                "code": data[key]['ewc']["code"],
+                                "description": data[key]["ewc"]["description"],
+                                "percentage": data[key]['probability']
+                            })
+                        }
+                        setEwcGuesses(guesses)
+                        setIsLoading(false);
                     })
-        }, (error) => {
-            console.log('error: ', error);
-            setIsLoading(false);
-        })
+            }, (error) => {
+                console.log('error: ', error);
+                setIsLoading(false);
+            })
     }, [imageId])
 
 
-    
     return (
         <div>
             <UploadAndDisplayImage onUpload={(img) => setImage(img)} />
             <TagsInput
                 onTags={(words) => setTags(words)}
-                onSingleTag={(tag) => setTags([...tags, tag])} 
+                onSingleTag={(tag) => setTags([...tags, tag])}
             />
             <p>{info}</p>
             {
                 isLoading ? <p>Loading...</p> : null
             }
+            <ChosenTagsField 
+                tags={tags} 
+                onRemove={(tag) => 
+                    setTags(tags.filter((t) => t !== tag))
+                }
+            />
             <Results
                 ewcGuesses={ewcGuesses /*placeholder */}
             />
