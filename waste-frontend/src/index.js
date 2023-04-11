@@ -17,35 +17,12 @@ export default function App() {
     const [isLoading, setIsLoading] = useState(false);
     const [info, setInfo] = useState("")
 
-    //upload image and get id
-    useEffect(() => {
-        if (!image) {
-            setImageId(null);
-            return;
-        }
-        // Create a FormData object to send the image file
-        const formData = new FormData();
-        formData.append('image', image, image.name);
-
-        fetch(`${BASE_URL}/image-upload/`, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            setImageId(data['id'])
-        })
-        .catch(error => {
-            console.error('Failed to upload image:', error);
-        });
-    }, [image])
-    
-    
+    //todo: stop guess request when image removed?
     useEffect(() => {
         setIsLoading(true);
         let url = `${BASE_URL}/guess?`
         for (const tag of tags) {
-            url = url + 'tags=' + tag + '&'
+            url = url + '&tags=' + tag
         }
 
         if (imageId) {
@@ -73,6 +50,29 @@ export default function App() {
                 setIsLoading(false);
             })
     }, [tags, imageId])
+
+    //upload image and get id
+    useEffect(() => {
+        console.log('image: ', image);
+        if (!image) {
+            return;
+        }
+        // Create a FormData object to send the image file
+        const formData = new FormData();
+        formData.append('image', image, image.name);
+
+        fetch(`${BASE_URL}/image-upload/`, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            setImageId(data['id'])
+        })
+        .catch(error => {
+            console.error('Failed to upload image:', error);
+        });
+    }, [image])
 
 
     return (
