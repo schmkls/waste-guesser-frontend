@@ -6,7 +6,7 @@ import TagsInput from './tagsInput/TagsInput';
 import Results from './results/Results';
 import ChosenTagsField from './chosenTagsField/ChosenTagsField';
 
-const BASE_URL = 'http://127.0.0.1:8000/waste'
+const BASE_URL = 'http://127.0.0.1:8000/waste';
 
 export default function App() {
 
@@ -31,21 +31,25 @@ export default function App() {
             method: 'POST',
             body: formData
         })
-            .then(response => response.json())
-            .then(data => {
-                setImageId(data['id'])
-            })
-            .catch(error => {
-                console.error('Failed to upload image:', error);
-            });
+        .then(response => response.json())
+        .then(data => {
+            setImageId(data['id'])
+        })
+        .catch(error => {
+            console.error('Failed to upload image:', error);
+        });
     }, [image])
-
-    //get ewcs from tags and image id
+    
+    
     useEffect(() => {
         setIsLoading(true);
-        let url = `${BASE_URL}/tags-guess?`
+        let url = `${BASE_URL}/guess?`
         for (const tag of tags) {
             url = url + 'tags=' + tag + '&'
+        }
+
+        if (imageId) {
+            url = url + '&image_id=' + imageId
         }
 
         fetch(url)
@@ -68,40 +72,7 @@ export default function App() {
                 console.log('error: ', error);
                 setIsLoading(false);
             })
-    }, [tags])
-
-
-    useEffect(() => {
-        if (!imageId) {
-            return;
-        }
-        setIsLoading(true);
-        let url = `${BASE_URL}/barcode-guess/?image_id=${imageId}`
-        fetch(url)
-            .then((ewcs) => {
-                if (ewcs.status === 400) {
-                    setInfo("Barcode could not be read")
-                    setIsLoading(false);
-                    return;
-                }
-                ewcs.json()
-                    .then((data) => {
-                        let guesses = []
-                        for (let key in data) {
-                            guesses.push({
-                                "code": data[key]['ewc']["code"],
-                                "description": data[key]["ewc"]["description"],
-                                "percentage": data[key]['probability']
-                            })
-                        }
-                        setEwcGuesses(guesses)
-                        setIsLoading(false);
-                    })
-            }, (error) => {
-                console.log('error: ', error);
-                setIsLoading(false);
-            })
-    }, [imageId])
+    }, [tags, imageId])
 
 
     return (
