@@ -20,9 +20,9 @@ export default function App() {
     //todo: stop guess request when image removed?
     useEffect(() => {
         setIsLoading(true);
-        let url = `${BASE_URL}/guess?`
+        let url = `${BASE_URL}/guess?tags=`
         for (const tag of tags) {
-            url = url + '&tags=' + tag
+            url = url + tag + '&tags='
         }
 
         if (imageId) {
@@ -37,9 +37,9 @@ export default function App() {
                         let guesses = []
                         for (let key in data) {
                             guesses.push({
-                                "code": data[key]['ewc']["code"],
+                                "code": data[key]["ewc"]["code"],
                                 "description": data[key]["ewc"]["description"],
-                                "percentage": data[key]['probability']
+                                "percentage": data[key]["probability"]
                             })
                         }
                         setEwcGuesses(guesses)
