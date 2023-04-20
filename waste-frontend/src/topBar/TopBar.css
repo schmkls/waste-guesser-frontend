@@ -1,0 +1,26 @@
+
+/* CSS code for background image with centered title */
+.h1-container {
+    position: relative;
+    height: 10vh;
+    background: url('../../public/avfallsloggen_background.png') center top no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items at the top of the container */
+    flex-direction: column; /* Set flex-direction to column to stack items vertically */
+  }
+  
+.h1-container h1 {
+    text-align: center;
+    margin-top: calc(0.5em); /* Adjust margin-top to approximately 1/3 of container height minus half of title height */
+    margin-left: auto; /* Center the text horizontally */
+    margin-right: auto; /* Center the text horizontally */
+}
+  
+.h3 {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+}

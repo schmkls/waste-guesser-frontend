@@ -5,6 +5,7 @@ import UploadAndDisplayImage from './uploadAndDisplayImage/UploadAndDisplayImage
 import TagsInput from './tagsInput/TagsInput';
 import Results from './results/Results';
 import ChosenTagsField from './chosenTagsField/ChosenTagsField';
+import TopBar from './topBar/TopBar';
 import urlAppendListParams from './helpFuncs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
@@ -107,6 +108,7 @@ export default function App() {
 
     return (
         <div>
+            <TopBar/>
             <UploadAndDisplayImage onUpload={(img) => setImage(img)} />
             <TagsInput
                 onTags={(words) => setTags(words)}
