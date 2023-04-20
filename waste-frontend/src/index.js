@@ -5,8 +5,15 @@ import UploadAndDisplayImage from './uploadAndDisplayImage/UploadAndDisplayImage
 import TagsInput from './tagsInput/TagsInput';
 import Results from './results/Results';
 import ChosenTagsField from './chosenTagsField/ChosenTagsField';
+import urlAppendListParams from './helpFuncs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay } from '@fortawesome/free-solid-svg-icons'
 
 const BASE_URL = 'http://127.0.0.1:8000/waste';
+const BAYES_SMOOTHED = 'Bayes joint probability';
+const BAYES_AVERAGE = 'Bayes average probability';
+const JACCARD_SIMILARITY = 'Jaccard similarity';
+
 
 export default function App() {
 
@@ -16,22 +23,34 @@ export default function App() {
     const [ewcGuesses, setEwcGuesses] = useState([]);   //results
     const [isLoading, setIsLoading] = useState(false);
     const [info, setInfo] = useState("")
+    const [searchType, setSearchType] = useState(BAYES_SMOOTHED)
 
     //todo: stop guess request when image removed?
     useEffect(() => {
         setIsLoading(true);
-        let url = `${BASE_URL}/guess?tags=`
-        for (const tag of tags) {
-            url = url + tag + '&tags='
-        }
 
+        let url = `${BASE_URL}/`
+        switch (searchType) {
+            case BAYES_AVERAGE:
+                url = url + 'guess-bayes-average'
+                break;
+            case JACCARD_SIMILARITY:
+                url = url + 'guess-jaccard-similarity'
+                break;
+            default:
+                url = url + 'guess-bayes-smoothed?smoothing=0.5'
+        }
+        url = urlAppendListParams(url, 'tags', tags)
         if (imageId) {
             url = url + '&image_id=' + imageId
         }
 
         fetch(url)
-            .then((ewcs) => {
-                ewcs.json()
+            .then((response) => {
+                if (response.status !== 200) {
+                    setInfo(`Error ${response.status}. No results found. Try again with different tags or image.`)
+                }
+                response.json()
                     .then((data) => {
                         console.log('data: ', data);
                         let guesses = []
@@ -49,7 +68,7 @@ export default function App() {
                 console.log('error: ', error);
                 setIsLoading(false);
             })
-    }, [tags, imageId])
+    }, [tags, imageId, searchType])
 
     //upload image and get id
     useEffect(() => {
@@ -75,6 +94,17 @@ export default function App() {
     }, [image])
 
 
+    const switchSearchType = () => {
+        if (searchType === BAYES_SMOOTHED) {
+            setSearchType(BAYES_AVERAGE)
+        } else if (searchType === BAYES_AVERAGE) {
+            setSearchType(JACCARD_SIMILARITY)
+        } else {
+            setSearchType(BAYES_SMOOTHED)
+        }
+    }
+
+
     return (
         <div>
             <UploadAndDisplayImage onUpload={(img) => setImage(img)} />
@@ -92,6 +122,13 @@ export default function App() {
                     setTags(tags.filter((t) => t !== tag))
                 }
             />
+            <p>Search type: {searchType}</p>
+            <button
+                onClick={() => switchSearchType()}
+            >
+                <FontAwesomeIcon icon={faPlay} />
+                Switch search type
+            </button>
             <Results
                 ewcGuesses={ewcGuesses /*placeholder */}
             />
