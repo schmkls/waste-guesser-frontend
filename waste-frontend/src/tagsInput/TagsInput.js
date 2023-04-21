@@ -23,14 +23,14 @@ const TagsInput = (props) => {
 
 
     useEffect(() => {
-        if (inputText.length === 0) {
+        if (inputText.length == 0) {
             setSuggestedTags([]);
             return;
         }
  
         fetch(`${APPLICATION_CONSTANTS.BASE_URL}/tag-suggestions?text=${inputText}`)
         .then((response) => {
-            if (response.status !== 200) {
+            if (response.status != 200) {
                 setSuggestedTags([]);
                 return;
             }
