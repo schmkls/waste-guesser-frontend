@@ -1,0 +1,27 @@
+.guess {
+    border-radius: 6px;
+    display: flex; /* Add flex display */
+    align-items: center; /* Vertically align items */
+}
+
+.percentage {
+    font-weight: bold;
+    margin-left: 8px; /* Add margin to create space between elements */
+}
+
+.description {
+    font-style: italic;
+    border: 1px solid grey;
+    width: 40vw;
+    margin-left: 8px; /* Add margin to create space between elements */
+}
+
+.copyButton {
+    display: flex; /* Add flex display to the button container */
+    align-items: center; /* Vertically align items within the button container */
+    justify-content: center; /* Horizontally center items within the button container */
+    border: none; /* Remove button border */
+    background-color: transparent; /* Remove button background color */
+    cursor: pointer;
+}
+

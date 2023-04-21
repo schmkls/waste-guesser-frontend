@@ -1,17 +1,14 @@
+import './Results.css'
+import Guess from './guess/Guess';
+
 const Results = ({ewcGuesses}) => {
 
     return (
-        <div>
+        <div className='results'>
             <ul>
                 {
                     ewcGuesses.map((guess, index) => 
-                        <div key={index}>
-                            <p>{Math.round(guess["percentage"] * 100, 2)}%</p>
-                            <ul key={index}>
-                                {guess["description"]} 
-                            </ul>
-                            <br/>
-                        </div>
+                        <Guess key={index} guess={guess} />
                     )
                 }
             </ul>
