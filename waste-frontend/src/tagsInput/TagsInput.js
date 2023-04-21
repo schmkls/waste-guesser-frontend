@@ -16,6 +16,11 @@ const TagsInput = (props) => {
         setInputText("");
     }
 
+    const handleSelect = (string) => {
+        props.onSingleTag(string);
+        setInputText("");
+    }
+
 
     useEffect(() => {
         if (inputText.length == 0) {
@@ -46,6 +51,7 @@ const TagsInput = (props) => {
             <h3>Beskriv produkten med några ord</h3>
             <input
                 type="text"
+                value={inputText}
                 onKeyDown={(e) => {
                     if (e.key === "Enter") {
                         handleSubmit(e.target.value);
@@ -62,7 +68,7 @@ const TagsInput = (props) => {
                 }}
             />
             <TagSelect 
-                onSelect={(tag) => props.onSingleTag(tag)}
+                onSelect={(tag) => handleSelect(tag)}
                 tags = {suggestedTags}
             />
         </div>
