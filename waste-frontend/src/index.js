@@ -8,7 +8,7 @@ import ChosenTagsField from './tagsInput/chosenTagsField/ChosenTagsField';
 import TopBar from './topBar/TopBar';
 import urlAppendListParams from './helpFuncs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import APPLICATION_CONSTANTS from './applicationConstants';
 const BAYES_SMOOTHED = 'Bayes joint probability';
@@ -79,6 +79,7 @@ export default function App() {
         if (!image) {
             return;
         }
+        setIsLoading(true);
         // Create a FormData object to send the image file
         const formData = new FormData();
         formData.append('image', image, image.name);
@@ -87,12 +88,20 @@ export default function App() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            setImageId(data['id'])
+        .then((response) => { 
+            if (response.status !== 200) {
+                console.log('Error uploading image., setting info to: ', response['image']);
+                setInfo(response['image'])
+            }
+            response.json() 
+            .then(data => {
+                setImageId(data['id'])
+            })
         })
+       
         .catch(error => {
             console.error('Failed to upload image:', error);
+            setInfo("Failed to upload image")
         });
     }, [image])
 
@@ -132,12 +141,21 @@ export default function App() {
                 </button>
             </div>
             <div className='rightOnBigScreen'>
-                <p>{info}</p>
                 {
-                    isLoading ? <p>Loading...</p> : null
+                    info && (
+                        <h1 className='infoMessage'>info message here!{info}</h1>
+                    )
+                }
+                {
+                    isLoading && (
+                        <div className='info'>
+                            <h2 className='loading'>Laddar avfallskoder</h2>
+                            <FontAwesomeIcon icon={faSpinner} spin size="4x" className='spinner'/>
+                        </div>
+                    )
                 }
                 <Results
-                    ewcGuesses={ewcGuesses /*placeholder */}
+                    ewcGuesses={ewcGuesses}
                 />
             </div>
         </div>

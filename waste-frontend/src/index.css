@@ -12,6 +12,24 @@ code {
     monospace;
 }
 
+.info {
+  display: flex; /* Use flexbox for parent container */
+  align-items: center; /* Center align items vertically */
+}
+
+.infoMessage{
+  flex-grow: 1; /* Allow info message to grow and take up remaining space */
+  color: red;
+}
+
+.info h2.loading {
+  margin-right: 1rem; /* Add margin to the right of loading message for spacing */
+}
+
+.spinner {
+  flex-shrink: 0; /* Prevent spinner from shrinking and maintain its size */
+}
+
 @media only screen and (min-width: 600px) {
   .leftOnBigScreen {
     /* Your styles for leftOnBigScreen div */

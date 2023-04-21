@@ -12,7 +12,7 @@ const UploadAndDisplayImage = (props) => {
 		<div>
 			<h3>Ladda upp bild på produktens streckkod</h3>
 			<div className="imageUpload">
-				<label for="file-input">
+				<label htmlFor="file-input">
 					<FontAwesomeIcon icon={faUpload} size="4x"/>
 				</label>
 				<input
