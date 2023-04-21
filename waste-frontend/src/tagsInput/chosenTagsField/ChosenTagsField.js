@@ -5,6 +5,9 @@ import './ChosenTagsField.css';
 const ChosenTagsField = (props) => {
     const tags = props.tags;
 
+    if (tags.length === 0) {
+        return <></>
+    }
     return (
         <div className='chosenTags'>
             {
