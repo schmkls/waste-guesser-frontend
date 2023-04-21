@@ -12,7 +12,7 @@
 .description {
     font-style: italic;
     border: 1px solid grey;
-    width: 40vw;
+    width: 30vw;
     margin-left: 8px; /* Add margin to create space between elements */
 }
 
@@ -25,3 +25,11 @@
     cursor: pointer;
 }
 
+@media only screen and (max-width: 600px) {
+    .description {
+        font-style: italic;
+        border: 1px solid grey;
+        width: 60vw;;
+        margin-left: 8px; /* Add margin to create space between elements */
+    }
+}
