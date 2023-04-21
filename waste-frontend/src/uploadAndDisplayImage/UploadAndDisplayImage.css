@@ -1,4 +1,4 @@
-.imageUpload>input {
+.imageUpload input {
     display: none;
 }
 
@@ -13,6 +13,10 @@
     align-items: center;
     justify-content: center;
     margin-top: -20px;
+}
+
+.imageUpload:hover {
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {

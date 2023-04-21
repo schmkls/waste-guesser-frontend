@@ -15,17 +15,17 @@ const UploadAndDisplayImage = (props) => {
 				<label for="file-input">
 					<FontAwesomeIcon icon={faUpload} size="4x"/>
 				</label>
+				<input
+					id="file-input"
+					type="file"
+					name="myImage"
+					onChange={(event) => {
+						console.log(event.target.files[0]);
+						setSelectedImage(event.target.files[0]);
+						props.onUpload(event.target.files[0])
+					}}
+				/>
 			</div>
-			<input
-				id="file-input"
-				type="file"
-				name="myImage"
-				onChange={(event) => {
-					console.log(event.target.files[0]);
-					setSelectedImage(event.target.files[0]);
-					props.onUpload(event.target.files[0])
-				}}
-			/>
 			<br />
 		</div>
 	

@@ -11,15 +11,18 @@ const Guess = ({guess}) => {
             >
                 <FontAwesomeIcon icon={faCopy} size="2x"/>
             </button>
-            <p className='percentage'>
-                {Math.round(guess["percentage"] * 100, 2)}%
-            </p>
             <p className='description'>
                 {guess["description"]}
+            </p>
+            <p className='percentage'>
+                {Math.round(guess["percentage"] * 100, 2)}%
             </p>
             <br/>
         </div>
     )
 }
 
+
+
 export default Guess;
+
