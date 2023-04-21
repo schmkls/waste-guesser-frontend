@@ -4,7 +4,6 @@ import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 const ChosenTagsField = (props) => {
     const tags = props.tags;
 
-
     return (
         <div>
             {

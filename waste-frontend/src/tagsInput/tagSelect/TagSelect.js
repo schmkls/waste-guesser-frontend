@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-const TagsInput = ({onSelect}) => {
+const TagsInput = ({onSelect, tags}) => {
 
-    let tags = ["hej", "hopp"]
     return (
         <div>
             {

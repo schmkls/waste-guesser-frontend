@@ -7,10 +7,10 @@ import Results from './results/Results';
 import ChosenTagsField from './chosenTagsField/ChosenTagsField';
 import TopBar from './topBar/TopBar';
 import urlAppendListParams from './helpFuncs';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
-const BASE_URL = 'http://127.0.0.1:8000/waste';
+    import APPLICATION_CONSTANTS from './applicationConstants';
 const BAYES_SMOOTHED = 'Bayes joint probability';
 const BAYES_AVERAGE = 'Bayes average probability';
 const JACCARD_SIMILARITY = 'Jaccard similarity';
@@ -30,7 +30,7 @@ export default function App() {
     useEffect(() => {
         setIsLoading(true);
 
-        let url = `${BASE_URL}/`
+        let url = `${APPLICATION_CONSTANTS.BASE_URL}/`
         switch (searchType) {
             case BAYES_AVERAGE:
                 url = url + 'guess-bayes-average'
@@ -81,7 +81,7 @@ export default function App() {
         const formData = new FormData();
         formData.append('image', image, image.name);
 
-        fetch(`${BASE_URL}/image-upload/`, {
+        fetch(`${APPLICATION_CONSTANTS.BASE_URL}/image-upload/`, {
             method: 'POST',
             body: formData
         })
