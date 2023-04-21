@@ -1,7 +1,6 @@
 .results {
     margin-top: 0px;
     display: flex;
-    justify-content: flex-end; /* Align contents to the right */
 }
 
 /* Media query for mobile devices with max-width of 767px */

@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media only screen and (min-width: 600px) {
+  .leftOnBigScreen {
+    /* Your styles for leftOnBigScreen div */
+    /* ... */
+    float: left; /* Float div to the left */
+    width: 50%; /* Set width to 50% to take up half of the container */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+  }
+  
+  .rightOnBigScreen {
+    /* Your styles for rightOnBigScreen div */
+    /* ... */
+    float: right; /* Float div to the right */
+    width: 50%; /* Set width to 50% to take up half of the container */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+  }
+  
+  /* Clear floats after the floated divs */
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+} 
+

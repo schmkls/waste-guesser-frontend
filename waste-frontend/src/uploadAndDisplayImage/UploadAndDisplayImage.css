@@ -19,6 +19,10 @@
     cursor: pointer;
 }
 
+.imageUpload label:hover {
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 600px) {
     .imageUpload {
         margin-top: 2vh;

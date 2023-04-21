@@ -110,31 +110,35 @@ export default function App() {
     return (
         <div>
             <TopBar/>
-            <UploadAndDisplayImage onUpload={(img) => setImage(img)} />
-            <TagsInput
-                onTags={(words) => setTags(words)}
-                onSingleTag={(tag) => setTags([...tags, tag])}
-            />
-            <p>{info}</p>
-            {
-                isLoading ? <p>Loading...</p> : null
-            }
-            <ChosenTagsField 
-                tags={tags} 
-                onRemove={(tag) => 
-                    setTags(tags.filter((t) => t !== tag))
+            <div className='leftOnBigScreen'>
+                <UploadAndDisplayImage onUpload={(img) => setImage(img)} />
+                <TagsInput
+                    onTags={(words) => setTags(words)}
+                    onSingleTag={(tag) => setTags([...tags, tag])}
+                />
+                <ChosenTagsField 
+                    tags={tags} 
+                    onRemove={(tag) => 
+                        setTags(tags.filter((t) => t !== tag))
+                    }
+                />
+                <p>Search type: {searchType}</p>
+                <button
+                    onClick={() => switchSearchType()}
+                >
+                    <FontAwesomeIcon icon={faPlay} />
+                    Switch search type
+                </button>
+            </div>
+            <div className='rightOnBigScreen'>
+                <p>{info}</p>
+                {
+                    isLoading ? <p>Loading...</p> : null
                 }
-            />
-            <p>Search type: {searchType}</p>
-            <button
-                onClick={() => switchSearchType()}
-            >
-                <FontAwesomeIcon icon={faPlay} />
-                Switch search type
-            </button>
-            <Results
-                ewcGuesses={ewcGuesses /*placeholder */}
-            />
+                <Results
+                    ewcGuesses={ewcGuesses /*placeholder */}
+                />
+            </div>
         </div>
     );
 }
