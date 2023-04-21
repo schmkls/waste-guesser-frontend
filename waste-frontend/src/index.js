@@ -9,8 +9,8 @@ import TopBar from './topBar/TopBar';
 import urlAppendListParams from './helpFuncs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import APPLICATION_CONSTANTS from './applicationConstants';
 
-    import APPLICATION_CONSTANTS from './applicationConstants';
 const BAYES_SMOOTHED = 'Bayes joint probability';
 const BAYES_AVERAGE = 'Bayes average probability';
 const JACCARD_SIMILARITY = 'Jaccard similarity';
@@ -25,6 +25,10 @@ export default function App() {
     const [isLoading, setIsLoading] = useState(false);
     const [info, setInfo] = useState("")
     const [searchType, setSearchType] = useState(BAYES_SMOOTHED)
+
+    const handleTagsClear = () => {
+        setTags([]);
+    }
 
     //todo: stop guess request when image removed?
     useEffect(() => {
@@ -113,6 +117,7 @@ export default function App() {
             <TagsInput
                 onTags={(words) => setTags(words)}
                 onSingleTag={(tag) => setTags([...tags, tag])}
+                onClear={() => handleTagsClear()}
             />
             <p>{info}</p>
             {
