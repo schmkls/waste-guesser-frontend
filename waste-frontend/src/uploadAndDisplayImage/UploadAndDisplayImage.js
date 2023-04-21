@@ -32,18 +32,15 @@ const UploadAndDisplayImage = (props) => {
 	)
   }
   return (
-    <div className="imageUpload">
+    <div className="uploaded">
 		{selectedImage && (
-			<div>
-				<button onClick={() => setSelectedImage(null)}>Remove</button>
 				<img
 					alt="not found"
-					width={"250px"}
+					className="image"
 					src={URL.createObjectURL(selectedImage)}
 				/>
-				<br />
-			</div>
 		)}
+		<button onClick={() => setSelectedImage(null)}>Remove</button>
     </div>
   );
 };

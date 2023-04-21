@@ -51,6 +51,7 @@ export default function App() {
                 if (response.status !== 200) {
                     setInfo(`Error ${response.status}. No results found. Try again with different tags or image.`)
                     setIsLoading(false);
+                    setImageId(null);
                 }
                 response.json()
                     .then((data) => {
