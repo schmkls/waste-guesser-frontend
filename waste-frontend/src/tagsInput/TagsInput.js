@@ -1,6 +1,7 @@
 import TagSelect from './tagSelect/TagSelect';
 import { useState, useEffect } from 'react';
 import APPLICATION_CONSTANTS from '../applicationConstants';
+import './TagsInput.css';
 
 const TagsInput = (props) => {
     
@@ -47,7 +48,7 @@ const TagsInput = (props) => {
     }, [inputText]);
 
     return (
-        <div>
+        <div className="tagInput">
             <h3>Beskriv produkten med några ord</h3>
             <input
                 type="text"

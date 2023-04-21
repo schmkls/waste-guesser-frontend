@@ -7,7 +7,7 @@
     flex-wrap: wrap;
     max-width: clamp(0%, 20%, 100%);
     border: 2px solid black;
-    border-radius: 5px;
+    border-radius: 6px;
   }
   
   .chosenTags button {
@@ -23,7 +23,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     border: 1px solid black;
-    border-radius: 5px;
+    border-radius: 6px;
   }
   
   .chosenTags button svg {
