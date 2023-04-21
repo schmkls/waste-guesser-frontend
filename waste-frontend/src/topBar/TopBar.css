@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 6vh; /* Set height to 10% of viewport height */
+    height: clamp(3rem, 6vh, 4rem); /* Set height to 10% of viewport height */
     background: url('../../public/avfallsloggen_background.png') center top no-repeat;
     background-size: cover;
     display: flex;
