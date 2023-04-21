@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
-
-const Results = ({ewcGuesses}) => {
+const Results = ({results}) => {
 
     return (
         <div>
             <ul>
                 {
-                    ewcGuesses.map((guess, index) => 
+                    results.map((guess, index) => 
                         <div key={index}>
                             <p>{Math.round(guess["percentage"] * 100, 2)}%</p>
                             <ul key={index}>
