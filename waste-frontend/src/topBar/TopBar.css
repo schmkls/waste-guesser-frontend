@@ -1,5 +1,5 @@
 .topBar {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     right: 0;
@@ -16,16 +16,18 @@
 }
   
 .topBar h1 {
-    margin-top: 1em;
+    margin-top: 2vh;
+    margin-right: 0.5em;
     font-size: clamp(1rem, 4vw, 2rem);
     font-weight: bold;
     max-width: 100%; /* Set maximum width to 100% to ensure it does not overflow outside the background */
     overflow: hidden; /* Prevent overflow outside of the container */
+    cursor: pointer;
 }
 
 .topBar h3 {
-    margin-top: 1em;
-    margin-left: 1em; /* Add margin-left for horizontal spacing */
+    margin-top: 3vh;
+    margin-left: 0.5em; /* Add margin-left for horizontal spacing */
     font-size: clamp(1rem, 4vw, 2rem);
     font-weight: lighter;
     font-style: italic;

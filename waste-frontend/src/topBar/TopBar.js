@@ -8,7 +8,7 @@ const TopBar = () => {
             >
                 Avfallskod.se
             </h1>
-            <h3>Hitta rätt avfallskod</h3>
+            <h3>hitta rätt avfallskod</h3>
         </div>
     );
 }

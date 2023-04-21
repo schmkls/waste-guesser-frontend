@@ -1,23 +1,38 @@
 import { useState } from "react";
-
+import "./UploadAndDisplayImage.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
 const UploadAndDisplayImage = (props) => {
 
   const [selectedImage, setSelectedImage] = useState(null);
 
+  if (!selectedImage) {
+	return (
+		<div>
+			<h3>Ladda upp bild på produktens streckkod</h3>
+			<div className="imageUpload">
+				<label for="file-input">
+					<FontAwesomeIcon icon={faUpload} size="4x"/>
+				</label>
+			</div>
+			<input
+				id="file-input"
+				type="file"
+				name="myImage"
+				onChange={(event) => {
+					console.log(event.target.files[0]);
+					setSelectedImage(event.target.files[0]);
+					props.onUpload(event.target.files[0])
+				}}
+			/>
+			<br />
+		</div>
+	
+	)
+  }
   return (
-    <div>
-    	<h3>Ladda upp bild på produktens streckkod</h3>
-		<input
-			type="file"
-			name="myImage"
-			onChange={(event) => {
-				console.log(event.target.files[0]);
-				setSelectedImage(event.target.files[0]);
-				props.onUpload(event.target.files[0])
-			}}
-		/>
-      	<br />
+    <div className="imageUpload">
 		{selectedImage && (
 			<div>
 				<button onClick={() => setSelectedImage(null)}>Remove</button>
