@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 const Results = ({ewcGuesses}) => {
 
     return (
@@ -14,7 +12,6 @@ const Results = ({ewcGuesses}) => {
                             </ul>
                             <br/>
                         </div>
-                        
                     )
                 }
             </ul>

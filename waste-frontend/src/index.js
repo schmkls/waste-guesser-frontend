@@ -4,13 +4,13 @@ import './index.css';
 import UploadAndDisplayImage from './uploadAndDisplayImage/UploadAndDisplayImage';
 import TagsInput from './tagsInput/TagsInput';
 import Results from './results/Results';
-import ChosenTagsField from './chosenTagsField/ChosenTagsField';
+import ChosenTagsField from './tagsInput/chosenTagsField/ChosenTagsField';
 import TopBar from './topBar/TopBar';
 import urlAppendListParams from './helpFuncs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
-    import APPLICATION_CONSTANTS from './applicationConstants';
+import APPLICATION_CONSTANTS from './applicationConstants';
 const BAYES_SMOOTHED = 'Bayes joint probability';
 const BAYES_AVERAGE = 'Bayes average probability';
 const JACCARD_SIMILARITY = 'Jaccard similarity';
