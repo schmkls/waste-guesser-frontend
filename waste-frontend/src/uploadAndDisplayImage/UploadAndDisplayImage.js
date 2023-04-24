@@ -1,7 +1,7 @@
-import { useState } from "react";
-import "./UploadAndDisplayImage.css";
+import { useState } from 'react';
+import './UploadAndDisplayImage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faUpload, faCamera } from '@fortawesome/free-solid-svg-icons';
 
 const UploadAndDisplayImage = (props) => {
 
@@ -10,34 +10,50 @@ const UploadAndDisplayImage = (props) => {
   if (!selectedImage) {
 	return (
 		<div>
-			<h3 className="uploadInstructions"
-            >Ladda upp bild på produktens streckkod</h3>
-			<div className="imageUpload">
-				<label htmlFor="file-input">
-					<FontAwesomeIcon icon={faUpload} size="4x"/>
-				</label>
-				<input
-					id="file-input"
-					type="file"
-					name="myImage"
-					onChange={(event) => {
-						console.log(event.target.files[0]);
-						setSelectedImage(event.target.files[0]);
-						props.onUpload(event.target.files[0])
-					}}
-				/>
-			</div>
-			<br />
+			<h3 className='uploadInstructions'>
+                Ladda upp bild på produktens streckkod
+            </h3>
+            <div className='bottomStuff'>
+                <div className='imageUpload'>
+                    <img
+                        className='instructionImage' 
+                        src="image_upload_instruction.png"
+                        alt="Instruction image"
+                    >
+                    </img>
+                </div>
+                <div className='buttonsBar'>
+                    <label htmlFor='file-input'>
+                            <FontAwesomeIcon icon={faUpload} size='4x'/>
+                        </label>
+                        <input
+                            id='file-input'
+                            type='file'
+                            name='myImage'
+                            onChange={(event) => {
+                                console.log(event.target.files[0]);
+                                setSelectedImage(event.target.files[0]);
+                                props.onUpload(event.target.files[0])
+                            }}
+                        />
+                        <FontAwesomeIcon 
+                            className='camera'
+                            icon={faCamera} 
+                            size='4x' 
+                            onClick={() => console.log('camera click')}
+                        />
+                </div>
+            </div>
 		</div>
 	
 	)
   }
   return (
-    <div className="uploaded">
+    <div className='uploaded'>
 		{selectedImage && (
 				<img
-					alt="not found"
-					className="image"
+					alt='not found'
+					className='image'
 					src={URL.createObjectURL(selectedImage)}
 				/>
 		)}

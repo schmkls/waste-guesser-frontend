@@ -17,7 +17,7 @@ const Guess = ({guess, isCopied, onCopy}) => {
                     <FontAwesomeIcon icon={faCopy} size='2x'/>
                 </button>
                 {
-                    isCopied ? <p className='copiedInfo'>Kopierad!</p> : <></>
+                    isCopied ? <p className='copiedInfo'>Kopierad!</p> : <p></p>
                 }
             </div>
             <p className='description'>
