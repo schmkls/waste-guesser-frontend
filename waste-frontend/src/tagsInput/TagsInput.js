@@ -51,6 +51,7 @@ const TagsInput = (props) => {
         <div className="tagInput">
             <h3>Beskriv produkten med några ord</h3>
             <input
+                placeholder='Produktnamn, ingredienser, beskrivning'
                 type="text"
                 value={inputText}
                 onKeyDown={(e) => {

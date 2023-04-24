@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import './UploadAndDisplayImage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload, faCamera } from '@fortawesome/free-solid-svg-icons';
+import Camera from 'react-html5-camera-photo';
+import 'react-html5-camera-photo/build/css/index.css';
+import './UploadAndDisplayImage.css';
 
 const UploadAndDisplayImage = (props) => {
 
