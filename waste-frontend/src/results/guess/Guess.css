@@ -17,6 +17,12 @@
     margin-left: 8px; /* Add margin to create space between elements */
 }
 
+.copy {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 .copyButton {
     display: flex; /* Add flex display to the button container */
     align-items: center; /* Vertically align items within the button container */
@@ -24,6 +30,11 @@
     border: none; /* Remove button border */
     background-color: transparent; /* Remove button background color */
     cursor: pointer;
+}
+
+
+.copiedInfo {
+    font-size: x-small;
 }
 
 @media only screen and (max-width: 600px) {

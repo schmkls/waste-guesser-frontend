@@ -10,7 +10,8 @@ const UploadAndDisplayImage = (props) => {
   if (!selectedImage) {
 	return (
 		<div>
-			<h3>Ladda upp bild på produktens streckkod</h3>
+			<h3 className="uploadInstructions"
+            >Ladda upp bild på produktens streckkod</h3>
 			<div className="imageUpload">
 				<label htmlFor="file-input">
 					<FontAwesomeIcon icon={faUpload} size="4x"/>
