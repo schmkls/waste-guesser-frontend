@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload, faCamera } from '@fortawesome/free-solid-svg-icons';
-import Camera from 'react-html5-camera-photo';
+import Camera, {FACING_MODES} from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import './UploadAndDisplayImage.css';
 
@@ -38,6 +38,7 @@ const UploadAndDisplayImage = (props) => {
 						handleImageUpload(dataUri);
 						setTakingPhoto(false);
 					}}
+					idealFacingMode={FACING_MODES.ENVIRONMENT}
 				/>
 			</div>
 		);
