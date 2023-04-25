@@ -13,5 +13,6 @@
         width: 80vw;
         border: 1px solid black;
         border-radius: 6px;
+        margin-right: 0.5em;
     }
 }

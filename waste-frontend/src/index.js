@@ -23,7 +23,6 @@ export default function App() {
     const [tags, setTags] = useState([]);     //used to fetch results
     const [ewcGuesses, setEwcGuesses] = useState([]);   //results
     const [isLoading, setIsLoading] = useState(false);
-    const [info, setInfo] = useState("")
     const [searchType, setSearchType] = useState(BAYES_SMOOTHED)
 
     //todo: stop guess request when image removed?
@@ -78,6 +77,7 @@ export default function App() {
             setImageId(null);
             return;
         }
+        console.log('selected image:', image);
         setIsLoading(true);
         // Create a FormData object to send the image file
         const formData = new FormData();
@@ -141,11 +141,6 @@ export default function App() {
                 </button>
             </div>
             <div className='rightOnBigScreen'>
-                {
-                    info && (
-                        <h1 className='infoMessage'>info message here!{info}</h1>
-                    )
-                }
                 {
                     isLoading && (
                         <div className='info'>
