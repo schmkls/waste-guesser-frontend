@@ -48,14 +48,13 @@ export default function App() {
 
         fetch(url)
             .then((response) => {
-                if (response.status !== 200) {
-                    setInfo(`Error ${response.status}. No results found. Try again with different tags or image.`)
-                    setIsLoading(false);
-                    setImageId(null);
-                }
                 response.json()
                     .then((data) => {
-                        console.log('data: ', data);
+                        if (response.status > 299 || response.status < 200) {
+                            alert(data['error']);
+                            setIsLoading(false);
+                            return
+                        }
                         let guesses = []
                         for (let key in data) {
                             guesses.push({
@@ -68,15 +67,15 @@ export default function App() {
                         setIsLoading(false);
                     })
             }, (error) => {
-                console.log('error: ', error);
+                alert(`Could not guess ${error}`);
                 setIsLoading(false);
             })
     }, [tags, imageId, searchType])
 
     //upload image and get id
     useEffect(() => {
-        console.log('image: ', image);
         if (!image) {
+            setImageId(null);
             return;
         }
         setIsLoading(true);
@@ -88,21 +87,22 @@ export default function App() {
             method: 'POST',
             body: formData
         })
-        .then((response) => { 
-            if (response.status !== 200) {
-                console.log('Error uploading image., setting info to: ', response['image']);
-                setInfo(response['image'])
-            }
-            response.json() 
-            .then(data => {
-                setImageId(data['id'])
+            .then((response) => {
+                response.json()
+                    .then((data) => {
+                        if (response.status > 299 || response.status < 200) {
+                            alert(`Could not upload image. ${data['error']}`);
+                            setImageId(null);
+                            return
+                        }
+                        setImageId(data['id'])
+                    })
             })
-        })
-       
-        .catch(error => {
-            console.error('Failed to upload image:', error);
-            setInfo("Failed to upload image")
-        });
+            .catch(error => {
+                console.error('Failed to upload image:', error);
+                alert(`Could not upload image ${error}`);
+                setImageId(null);
+            });
     }, [image])
 
 
@@ -119,16 +119,16 @@ export default function App() {
 
     return (
         <div>
-            <TopBar/>
+            <TopBar />
             <div className='leftOnBigScreen'>
                 <UploadAndDisplayImage onUpload={(img) => setImage(img)} />
                 <TagsInput
                     onTags={(words) => setTags(words)}
                     onSingleTag={(tag) => setTags([...tags, tag])}
                 />
-                <ChosenTagsField 
-                    tags={tags} 
-                    onRemove={(tag) => 
+                <ChosenTagsField
+                    tags={tags}
+                    onRemove={(tag) =>
                         setTags(tags.filter((t) => t !== tag))
                     }
                 />
@@ -150,7 +150,7 @@ export default function App() {
                     isLoading && (
                         <div className='info'>
                             <h2 className='loading'>Laddar avfallskoder</h2>
-                            <FontAwesomeIcon icon={faSpinner} spin size="4x" className='spinner'/>
+                            <FontAwesomeIcon icon={faSpinner} spin size="4x" className='spinner' />
                         </div>
                     )
                 }
