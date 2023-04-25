@@ -34,4 +34,11 @@
     max-width: 100%; /* Set maximum width to 100% to ensure it does not overflow outside the background */
     overflow: hidden; /* Prevent overflow outside of the container */
 }
+
+.topBar a {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    color: black;
+}
   

@@ -1,5 +1,5 @@
 const APPLICATION_CONSTANTS = {
-    BASE_URL : 'http://127.0.0.1:8000/waste'
+    BASE_URL : 'http://192.168.50.70:8000/waste'
 }
 
 export default APPLICATION_CONSTANTS;
