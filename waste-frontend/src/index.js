@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import UploadAndDisplayImage from './uploadAndDisplayImage/UploadAndDisplayImage';
+import GetBarcode from './getBarcode/GetBarcode';
 import TagsInput from './tagsInput/TagsInput';
 import Results from './results/Results';
 import ChosenTagsField from './tagsInput/chosenTagsField/ChosenTagsField';
@@ -18,10 +18,15 @@ const JACCARD_SIMILARITY = 'Jaccard similarity';
 
 export default function App() {
 
-    const [image, setImage] = useState();      //used to get image from child component
-    const [imageId, setImageId] = useState(); //used to fetch results
-    const [tags, setTags] = useState([]);     //used to fetch results
-    const [ewcGuesses, setEwcGuesses] = useState([]);   //results
+    //for getting image or barcode from Scanner
+    const [image, setImage] = useState();      
+    const [barcode, setBarcode] = useState();
+
+    //for getting tags from TagsInput
+    const [tags, setTags] = useState([]);     
+
+    const [imageId, setImageId] = useState(); 
+    const [ewcGuesses, setEwcGuesses] = useState([]);  
     const [isLoading, setIsLoading] = useState(false);
     const [searchType, setSearchType] = useState(BAYES_SMOOTHED)
 
@@ -121,7 +126,10 @@ export default function App() {
         <div>
             <TopBar />
             <div className='leftOnBigScreen'>
-                <UploadAndDisplayImage onUpload={(img) => setImage(img)} />
+                <GetBarcode 
+                    onUpload={(img) => setImage(img)}
+                    onBarcode={(barcode) => setBarcode(barcode)} 
+                    />
                 <TagsInput
                     onTags={(words) => setTags(words)}
                     onSingleTag={(tag) => setTags([...tags, tag])}

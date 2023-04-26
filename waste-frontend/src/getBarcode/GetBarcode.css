@@ -1,0 +1,91 @@
+
+.imageUpload {
+    position: relative;
+    width: 20vh;
+    height: 20vh;
+    background-color: #D9D9D9;
+    border: 1px solid black;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+}
+
+.bottomStuff {
+    display: flex;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    .imageUpload {
+        width: 30vw;
+        height: 30vw;
+        background-color: #D9D9D9;
+        border: 1px solid black;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+    }   
+
+    .instructionImage {
+        width: 30vw;
+        height: 30vw;
+        object-fit: fill;
+    }
+
+    .image {
+        width: 30vw;
+        height: 30vw;
+        object-fit: fill;
+    }
+}
+
+.image {
+    width: 20vh;
+    height: 20vh;
+    object-fit: fill;
+}
+
+.uploadInstructions {
+    left: 0px;
+}
+
+
+.buttonsBar {
+    margin-left: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;    
+}
+
+.buttonsBar input {
+    display: none;
+}
+
+.buttonsBar label:hover {
+    cursor: pointer;
+}
+
+.buttonsBar label:active {
+    transform: scale(0.95); /* Example: Scale the button down to 95% of its size */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Example: Add a subtle box shadow */
+}
+
+.camera {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.camera:active {
+    transform: scale(0.95); /* Example: Scale the button down to 95% of its size */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Example: Add a subtle box shadow */
+}
+
+.instructionImage {
+    width: 20vh;
+    height: 20vh;
+    object-fit: fill;
+}

@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy } from '@fortawesome/free-solid-svg-icons'
-import React, { useRef, useEffect } from 'react';
 import './Guess.css'
 
 const Guess = ({guess, isCopied, onCopy}) => {    

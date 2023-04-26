@@ -13,6 +13,7 @@
     padding: 0 2rem; /* Add padding to ensure h1 and h3 are contained within the background */
     box-sizing: border-box; /* Include padding within the width and height of the container */
     overflow: hidden; /* Prevent overflow outside of the container */
+    width: 100;
 }
   
 .topBar h1 {
@@ -35,10 +36,3 @@
     overflow: hidden; /* Prevent overflow outside of the container */
 }
 
-.topBar a {
-    position: absolute;
-    top: 1em;
-    left: 1em;
-    color: black;
-}
-  
