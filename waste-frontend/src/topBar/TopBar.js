@@ -6,7 +6,7 @@ const TopBar = () => {
             <h1
                 onClick={() => window.location.reload()}    
             >
-                Avfallskod.se
+                Avfallskoden.se
             </h1>
             <h3>hitta rätt avfallskod</h3>
         </div>

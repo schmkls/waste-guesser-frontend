@@ -24,12 +24,13 @@ export default function App() {
 
     //for getting tags from TagsInput
     const [tags, setTags] = useState([]);     
-
+    
     const [imageId, setImageId] = useState(); 
     const [ewcGuesses, setEwcGuesses] = useState([]);  
     const [isLoading, setIsLoading] = useState(false);
     const [searchType, setSearchType] = useState(BAYES_SMOOTHED)
 
+    
     //todo: stop guess request when image removed?
     useEffect(() => {
         setIsLoading(true);
@@ -48,6 +49,10 @@ export default function App() {
         url = urlAppendListParams(url, 'tags', tags)
         if (imageId) {
             url = url + '&image_id=' + imageId
+        }
+
+        if (barcode) {
+            url = url + '&barcode=' + barcode
         }
 
         fetch(url)
@@ -74,7 +79,7 @@ export default function App() {
                 alert(`Could not guess ${error}`);
                 setIsLoading(false);
             })
-    }, [tags, imageId, searchType])
+    }, [tags, imageId, searchType, barcode])
 
     //upload image and get id
     useEffect(() => {

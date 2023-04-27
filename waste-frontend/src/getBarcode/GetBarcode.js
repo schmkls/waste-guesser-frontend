@@ -18,8 +18,12 @@ const GetBarcode = (props) => {
                         setIsCapturing(false);
                     }}
                 />
-                <button onClick={() => setIsCapturing(false)}>
-                    Stop
+                <button 
+					onClick={() => {
+						setIsCapturing(false)
+						props.onBarcode();
+					}}>
+                    Avbryt
                 </button>
             </>
         );
@@ -35,7 +39,13 @@ const GetBarcode = (props) => {
 						src={URL.createObjectURL(selectedImage)}
 					/>
 				)}
-				<button onClick={() => setSelectedImage()}>Remove</button>
+				<button 
+					onClick={() => {
+						setSelectedImage()
+						props.onUpload();
+					}}>
+					Avbryt
+				</button>
 			</div>
 		);
 	}
@@ -50,7 +60,7 @@ const GetBarcode = (props) => {
 					<img
 						className='instructionImage'
 						src="image_upload_instruction.png"
-						alt="Instruction image"
+						alt=""
 					>
 					</img>
 				</div>

@@ -4,7 +4,7 @@ import './Results.css'
 
 const Results = ({ewcGuesses}) => {
 
-    const [copiedIndex, setCopiedIndex] = useState(null);
+    const [copiedCode, setCopiedCode] = useState(null);
 
 
     return (
@@ -13,10 +13,10 @@ const Results = ({ewcGuesses}) => {
                 {
                     ewcGuesses.map((guess, index) => 
                         <Guess 
-                            key={index}
+                            key={guess['code']}
                             guess={guess} 
-                            isCopied={copiedIndex === index} 
-                            onCopy={() => setCopiedIndex(index)}
+                            isCopied={copiedCode === guess['code']} 
+                            onCopy={() => setCopiedCode(guess['code'])}
                         />
                     )
                 }
